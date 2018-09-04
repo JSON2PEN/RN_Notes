@@ -51,6 +51,11 @@ gradlew assembleRelease
 **注意:**
 1. RN代码中不能使用 propTypes.style类型校验,否则release运行直接报错;
 2. 代码中给的方法中不能使用'({})=>{}'字样否则执行报错
+### 软键盘点击空白处不消失的bug
+只需要在根scrollview或者listview中设置以下即可:
+```
+<ScrollView keyboardDismissMode='on-drag'>
+```
 
 
 
