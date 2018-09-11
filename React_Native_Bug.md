@@ -51,11 +51,54 @@ gradlew assembleRelease
 **注意:**
 1. RN代码中不能使用 propTypes.style类型校验,否则release运行直接报错;
 2. 代码中给的方法中不能使用'({})=>{}'字样否则执行报错
-### 软键盘点击空白处不消失的bug
+### 3. 软键盘点击空白处不消失的bug
 只需要在根scrollview或者listview中设置以下即可:
 ```
 <ScrollView keyboardDismissMode='on-drag'>
 ```
+###4. react-navigation自定义头布局在IOS返回不灵敏
+    
+```
+	
+	//不起作用 android上没问题
+	static navigationOptions = (navigation) => {  
+       		 // const params = navigation.state.params || {};
+
+        return {
+            header: ({navigation})=>{
+                return <UCBaseTitle back={()=>navigation.goBack(null)}
+                                    title={"hahahha"}/>
+            }
+        };
+    };
+
+	//解决方案
+
+	static navigationOptions = ({navigation}) => {
+        return {
+            headerLeft: <TouchableOpacity activeOpacity={1} style={{
+                    flexDirection: 'row',
+                    width: 50,
+                    alignItems: 'center',
+                    height: 50
+                }} onPress={() => navigation.goBack()}>
+                    <Image style={{width: 30, height: 30, marginLeft: 10}} source={backImg}/>
+                </TouchableOpacity>
+            ,
+            headerTitle: (<View style={{flex: 1, alignItems: 'center',}}><Text style={{color: 'white', fontSize: 20}}>我是标题</Text></View>
+            ),
+            headerRight: (
+                <View style={{height: 50, width: 50}}/>
+            ),
+            headerStyle: {
+                height: 50,
+                backgroundColor: '#27232e',
+                marginTop: statusHeight
+            }
+        }
+    };
+```
+    
 
 
 
