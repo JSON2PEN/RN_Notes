@@ -98,6 +98,10 @@ gradlew assembleRelease
         }
     };
 ```
+### Modal在android中必须添加:onRequestClose属性
+```
+onRequestClose={() => console.log('onRequestClose...')}
+```
     
 
 
