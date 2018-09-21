@@ -10,3 +10,7 @@ let rowData = Array.from({length: 2}, (value, index) => {
             s+=value;
         })
 ```
+###继承自父组件的属性
+```
+<Children {...this.props}/>
+```
